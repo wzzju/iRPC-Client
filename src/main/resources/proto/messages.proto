@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cn.edu.ustc.irpc";
+option java_outer_classname = "IRPCProto";
+
+package irpc;
+
+//推断服务
+service IRPC {
+    rpc InferenceProcess (InferenceData) returns (InferenceResult) {
+    }
+}
+
+message InferenceData {
+    int32 userID=1;//用户ID，标识哪个用户提交的任务
+    int32 jobID=2;//任务ID，标识所提交任务的ID
+    string taskName=3;//标识pb文件的名称
+    string dataDir=4;//数据文件所在路径
+    string dataName=5;//数据文件名称
+}
+
+message InferenceResult {
+    int32 userID=1;//用户ID，标识哪个用户提交的任务
+    int32 jobID=2;//任务ID，标识所提交任务的ID
+    string result = 3;//推断结果
+}
